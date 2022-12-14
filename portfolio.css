@@ -458,7 +458,7 @@ img {
 
 
 #BLOG{
-    margin: 50px 25px;
+    margin: 50px 0px;
     padding: 50px 0;
 }
 .BLOG {
@@ -1496,7 +1496,7 @@ form button .hover-bg{
     }
     #PROJECTS{
         margin: 5px;
-    }
+    } 
     section .heading{
         font-size: 30px;
     }
