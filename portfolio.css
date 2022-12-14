@@ -1439,6 +1439,13 @@ form button .hover-bg{
     }
     .article{
         padding: 0;
+        margin: 10px 0;
+    }
+    .article a>*{
+        padding-left: 10px;
+    }
+    .article a .article-cover{
+        padding-left: 0;
     }
   }
   @media screen and (max-width:450px){
