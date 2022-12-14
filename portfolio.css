@@ -457,7 +457,7 @@ img {
 
 
 #BLOG{
-    margin: 50px 50px;
+    margin: 50px 25px;
     padding: 50px 0;
 }
 .BLOG {
@@ -576,7 +576,6 @@ img {
 }
 .work {
 	text-align: center;
-	padding-top: 30px;
 	font-size: 20px;
 	color: #ff0066;
     cursor:default;
@@ -589,12 +588,16 @@ img {
 	display: flex;
 	text-align: center;
 	margin: 30px;
+    width: 400px;
+}
+form{
+    width: 100%;
 }
 ::placeholder{
     color: #ff0066;
 }
 form .input,textarea  {
-	width: 400px;
+	width: 100%;
 	padding: 12px;
     margin: 2px;
 	border: 1px solid #ff0066;
@@ -1409,6 +1412,12 @@ form button .hover-bg{
         width: 100%;
         height: auto;
     }
+    .CONTACT{
+        font-size: 40px;
+    }
+    .work{
+        font-size: 15px;
+    }
   }
   @media screen and (max-width:450px){
       .center{
@@ -1457,6 +1466,9 @@ form button .hover-bg{
     }
     .item-card .card-data{
         font-size: calc(10px + 15px/var(--i));
+    }
+    .form{
+        width: 300px;
     }
   }
   
