@@ -1,3 +1,6 @@
+html{
+    overflow-x: hidden;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -29,6 +32,7 @@ a{
 /************* background animation welcome **********/
 
 #bgcontainer{
+    position: relative;
     background-color:#1a1a1a;
     height: 100vh;
     width: 100vw;
@@ -303,8 +307,8 @@ section{
     z-index: -1;
 }
 #welcome .bg-text{
-    top: 20vh;
-    left: -30vw;
+    top: 0px;
+    left: -10vw;
 }
 #ABOUT .bg-text{
     top: 20vh;
@@ -1392,6 +1396,12 @@ form button .hover-bg{
     }
     .modal .modal-body .description{
         height: 40%;
+    }
+    section .heading{
+        font-size: 50px;
+    }
+    .bg-text{
+        font-size: 300px;
     }
   }
   @media screen and (max-width:450px){
