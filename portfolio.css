@@ -1395,7 +1395,7 @@ form button .hover-bg{
     width: 80%;
     }
     .skillx{
-    width: 85%;
+        width: 85vw;
     }
   }
   @media screen and ( max-width:600px) {
@@ -1435,6 +1435,7 @@ form button .hover-bg{
     .item-card .card-data{
         font-size: calc(10px + 12px/var(--i));
     }
+    
   }
   @media screen and (max-width:450px){
       .center{
@@ -1453,10 +1454,6 @@ form button .hover-bg{
     }
     .reveal{
         opacity: 1;
-    }
-    
-    .skillx{
-        width: 60%;
     }
     .contents .items .item {
         width: 100%;
@@ -1509,7 +1506,6 @@ form button .hover-bg{
     }
     
     .skillx{
-        width: 45%;
         height: 21px;
     }
     .btn-tab{
@@ -1553,3 +1549,4 @@ form button .hover-bg{
         width: 250px;
     }
   }
+  
