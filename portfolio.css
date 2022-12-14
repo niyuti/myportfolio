@@ -591,9 +591,6 @@ img {
 	margin: 30px;
     width: 400px;
 }
-form{
-    width: 100%;
-}
 ::placeholder{
     color: #ff0066;
 }
@@ -1420,7 +1417,7 @@ form button .hover-bg{
         font-size: 300px;
     }
     #PROJECT{
-        margin: 50px 10px;
+        margin: 50px 0px;
     }
     .contents .items .item{
         width: 100%;
@@ -1435,7 +1432,12 @@ form button .hover-bg{
     .item-card .card-data{
         font-size: calc(10px + 12px/var(--i));
     }
-    
+    .articles{
+        margin: 0;
+    }
+    .article{
+        padding: 0;
+    }
   }
   @media screen and (max-width:450px){
       .center{
@@ -1474,11 +1476,12 @@ form button .hover-bg{
         height: 2.25em;
     }
     .form{
-        width: 300px;
+        width: 90vw;
     }
     .item-card:hover .card-data{
         top:calc(var(--i)*20%);
     }
+    
   }
   @media screen and (max-width:370px) {
     .center{
