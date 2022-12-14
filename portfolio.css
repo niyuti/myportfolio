@@ -584,7 +584,9 @@ img {
 .work:hover{
     color: #08fdd8;
 }
-
+form{
+    width: 100%;
+}
 .form{
 	display: flex;
 	text-align: center;
@@ -1416,7 +1418,7 @@ form button .hover-bg{
     .bg-text{
         font-size: 300px;
     }
-    #PROJECT{
+    #PROJECTS{
         margin: 50px 0px;
     }
     .contents .items .item{
@@ -1547,9 +1549,6 @@ form button .hover-bg{
     }
     .work{
         font-size: 12px;
-    }
-    .form{
-        width: 250px;
     }
   }
   
