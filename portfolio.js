@@ -164,6 +164,7 @@ let section;
 let selectedNav;
 const stickPoint = navbar.offsetTop;
 const stickyNav = ()=>{
+    
     if(window.pageYOffset >=stickPoint)
     {
         navbar.classList.add('sticky');

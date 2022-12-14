@@ -1,6 +1,4 @@
-html{
-    overflow-x: hidden;
-}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -1351,6 +1349,9 @@ form button .hover-bg{
   }
 
   @media screen and (max-width:700px){
+    html{
+        overflow-x: hidden;
+    }
     .modal{
         width: 80vw;
     }
@@ -1534,9 +1535,6 @@ form button .hover-bg{
         width: 10em;
         height: 2.25em;
     }
-    .form{
-        width: 300px;
-    }
     .item-card:hover .card-data{
         font-size: calc(8px + 10px/var(--i));
         top:calc(var(--i)*25%);
@@ -1544,5 +1542,14 @@ form button .hover-bg{
     .item-card:hover .card-CTA{
         width: 8em;
         height: 2em;
+    }
+    .CONTACT{
+        font-size: 30px;
+    }
+    .work{
+        font-size: 12px;
+    }
+    .form{
+        width: 250px;
     }
   }
