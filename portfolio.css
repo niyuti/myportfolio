@@ -962,7 +962,6 @@ form button .hover-bg{
   .item-card:hover .card-data{
     top:calc(var(--i)*15%);
     color: var(--c);
-    
   }
   .card-data>*{
     text-align: center;
@@ -1465,10 +1464,13 @@ form button .hover-bg{
         height: 2.25em;
     }
     .item-card .card-data{
-        font-size: calc(10px + 15px/var(--i));
+        font-size: calc(8px + 12px/var(--i));
     }
     .form{
         width: 300px;
+    }
+    .item-card:hover .card-data{
+        top:calc(var(--i)*20%);
     }
   }
   
