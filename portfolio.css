@@ -902,7 +902,7 @@ form button .hover-bg{
   }
   .contents .items .item{
     width: 400px;
-    height: 300px;
+    aspect-ratio: 4/3;
   }
  .item .item-card{
     position: relative;
@@ -910,7 +910,6 @@ form button .hover-bg{
   }
   .item-card .card-image{
     transition: all 0.5s;
-    height: auto;
   }
   #gallary1{
     background: url(./dosomething.jpg);
@@ -937,8 +936,8 @@ form button .hover-bg{
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 400px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     background-color: transparent;
     transition: background-color 0.25s linear;
   }
@@ -955,13 +954,13 @@ form button .hover-bg{
     text-align: center;
     transform: translateX(-50%);
     transition: all 0.35s;
+    font-size: calc(10px + 20px/var(--i));
   }
   .item-card:hover .card-data{
     top:calc(var(--i)*15%);
     color: var(--c);
-    font-size: calc(15px + 10px/var(--i));
+    
   }
-  
   .card-data>*{
     text-align: center;
   }
@@ -1403,6 +1402,13 @@ form button .hover-bg{
     .bg-text{
         font-size: 300px;
     }
+    #PROJECT{
+        margin: 50px 10px;
+    }
+    .contents .items .item{
+        width: 100%;
+        height: auto;
+    }
   }
   @media screen and (max-width:450px){
       .center{
@@ -1440,8 +1446,17 @@ form button .hover-bg{
         height: 100%;
     }
     .item-card .card-image {
-        height: 200px;
         width: 100%;
     }
-    
+    .item-card:hover .card-CTA{
+        bottom: 15%;
+        color: black;
+        border-color: #aa2121;
+        width: 10em;
+        height: 2.25em;
+    }
+    .item-card .card-data{
+        font-size: calc(10px + 15px/var(--i));
+    }
   }
+  
