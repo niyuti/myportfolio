@@ -1209,13 +1209,9 @@ form button .hover-bg{
         width: 100%;
     }
     .btn-tab{
-        height: 31px;
         width: 20vw;
         min-width: 120px;
         color: #08fdd8 ;
-        font-size: 15px;
-        font-weight: 400;
-        line-height: 31px;
     }
     .navlist{
         left: 5%;
