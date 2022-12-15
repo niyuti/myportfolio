@@ -305,7 +305,7 @@ section{
     z-index: -1;
 }
 #welcome .bg-text{
-    top: 0px;
+    top: -20vh;
     left: -10vw;
 }
 #ABOUT .bg-text{
@@ -1219,7 +1219,6 @@ form button .hover-bg{
     .container .icons a{
         width: 15% !important;
     }
-  }
   .reveal{
     opacity: 0;
   }

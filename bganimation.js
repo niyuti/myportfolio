@@ -1,24 +1,39 @@
- function Animate(canvas, options) {
+/**
+ * Canvas Experiment
+ * Based on https://tympanus.net/Development/AnimatedHeaderBackgrounds/index.html
+ * Deps: GreenSocks TweenLite
+ */
+
+/**
+ * Constructor
+ */
+function Animate(canvas, options) {
     this.canvas = canvas;
     this.options = defaults(options || {}, this.options);
     this.init();
   }
-
+  
+  /**
+   * Default options
+   */
   Animate.prototype.options = {
-    density: 15,
-    speed: 10, 
-    sync: false, 
-    distance: 100, 
+    density: 5, // Affects how many poitns are created
+    speed: 10, // Time in seconds to shift points
+    sync: false, // Should points move in sync
+    distance: 100, // Distance to move points
     lineColor: '27, 255, 221',
-    circleColor: '255, 0, 102',
-    radius: 5,
+    circleColor: '140,140,140',
+    radius: 1,
     lineWidth: 1,
-    lines: 2,
-    updateClosest : false, 
-    mouse: true, 
+    lines: 10,  // Number of closest lines to draw
+    updateClosest : false, // Update closet points each loop
+    mouse: true, // Link to mouse or random
   
   };
   
+  /**
+   * Setup everything
+   */
   Animate.prototype.init = function(){
     this.width = window.innerWidth;
     this.height = window.innerHeight;
@@ -29,10 +44,13 @@
       }
     };
   
-    this.canvas.width = this.width*0.98;
-    this.canvas.height = this.height*0.92;
+    // Setup canvas
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
   
     this.ctx = canvas.getContext('2d');
+  
+    window.addEventListener('resize', this.resize.bind(this));
   
     if(this.options.mouse === true && !('ontouchstart' in window) ) {
        window.addEventListener('mousemove', this.mousemove.bind(this));
@@ -48,23 +66,36 @@
         this.points.push(point);
       }
     }
-    
-
+  
+    // Setup Circles
     for(var i in this.points) {
       this.points[i].circle = new Circle(this.points[i], this.ctx, this.options);
     }
   
-    this.findClosest(); 
+    this.findClosest(); // Points
   
-    this.animate();
-
+    this.animate(); // Start the loop
+  
+    this.shiftPoints(); // Start the tween loop
+  
+    if(this.options.mouse === false) {
+      this.moveTarget(); // Start the random target loop
+    }
+  
   };
- 
+  
+  /*
+   * Cycles through each Point and finds its neighbors
+   */
   Animate.prototype.findClosest = function() {
     for(var i = 0; i < this.points.length; i++) {
+      // Save the point
       var point = this.points[i];
+      // Reset
       point.closest = [];
+      // Cycle through the others
       for(var j = 0; j < this.points.length; j++) {
+        // Point to test
         var testPoint = this.points[j];
         if(point.id !== testPoint.id) {
           var placed = false, k;
@@ -89,56 +120,99 @@
       }
     }
   };
-
+  
+  /**
+   * Animation Loop
+   */
   Animate.prototype.animate = function() {
     var i;
+    // Should we recalucate closest?
     if(this.options.updateClosest) {
       this.findClosest();
     }
   
+    // Calculate Opacity
     for(i in this.points) {
       if(this.points[i].distanceTo(this.target, true) < 5000) {
-         this.points[i].opacity = 0.2;
-         this.points[i].circle.opacity = 0.4;
+         this.points[i].opacity = 0.4;
+         this.points[i].circle.opacity = 0;
       } else if (this.points[i].distanceTo(this.target, true) < 10000) {
-         this.points[i].opacity = 0.1;
-         this.points[i].circle.opacity = 0.2;
+         this.points[i].opacity = 0.3;
+         this.points[i].circle.opacity = 0;
       } else if (this.points[i].distanceTo(this.target, true) < 30000) {
-         this.points[i].opacity = 0.05;
-         this.points[i].circle.opacity = 0.1;
+         this.points[i].opacity = 0.2;
+         this.points[i].circle.opacity = 0;
       } else {
-         this.points[i].opacity = 0;
+         this.points[i].opacity = 0.1;
          this.points[i].circle.opacity = 0;
       }
     }
-
+     // Clear
     this.ctx.clearRect(0, 0, this.width, this.height);
     for(i in this.points) {
   
       this.points[i].drawLines();
       this.points[i].circle.draw();
     }
-
+   // Loop
    window.requestAnimationFrame(this.animate.bind(this));
   };
   
+  /**
+   * Starts each point in tween loop
+   */
+  Animate.prototype.shiftPoints = function() {
+    for(var i in this.points) {
+      this.points[i].shift();
+    }
+  };
+  
+  
+  /**
+   * Make sure the canvas is the right size
+   */
   Animate.prototype.resize = function() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
   };
-
+  
+  /**
+   * Mouse Move Event - Moves the target with the mouse
+   * @param    event   {Object}   Mouse event
+   */
   Animate.prototype.mousemove = function(event) {
-        if(event.pageX || event.pageY) {
-            this.target.position.x = event.pageX;
-            this.target.position.y = event.pageY;
-          } else if(event.clientX || event.clientY) {
-            this.target.position.x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-            this.target.position.y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-          }    
+    if(event.pageX || event.pageY) {
+      this.target.position.x = event.pageX;
+      this.target.position.y = event.pageY;
+    } else if(event.clientX || event.clientY) {
+      this.target.position.x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+      this.target.position.y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
   };
   
+  /**
+   * Randomly move the target
+   */
+  Animate.prototype.moveTarget = function() {
+    var _this = this;
+    TweenLite.to(this.target.position, 2, {
+      x : (Math.random() * (this.width - 200)) + 100,
+      y : (Math.random() * (this.height - 200)) + 100,
+      ease: Expo.easeInOut,
+      onComplete: function() {
+        _this.moveTarget();
+      }
+    });
+  };
+  
+  /**
+   * Point Constructor
+   * @param    position   {Object}     set of x and u coords
+   * @param    ctx        {Object}     Canvas context to draw on
+   * @param    options    {Object}     options passed from main function
+   */
   function Point(position, ctx, id, options) {
     this.options = options || {};
     this.id = id;
@@ -151,13 +225,22 @@
     this.opacity = 0;
     this.closest = [];
   }
-
+  
+  /**
+   * Caluclates the distance to another point
+   * @param    point    {Object}    Another Point
+   * @param    abs      {Boolean}   Return the absolute value or not
+   * @returns  {Number}
+   */
   Point.prototype.distanceTo = function(point, abs) {
     abs = abs || false;
     var distance = Math.pow(this.position.x - point.position.x, 2) + Math.pow(this.position.y - point.position.y, 2);
     return abs ? Math.abs(distance) : distance;
   };
   
+  /**
+   *  Draws lines to the closet points
+   */
   Point.prototype.drawLines = function() {
     for(var i in this.closest) {
       if(this.opacity  > 0) {
@@ -178,7 +261,34 @@
       }
     }
   };
-
+  
+  /**
+   * Tween loop to move each point around it's origin
+   */
+  Point.prototype.shift = function() {
+    var _this = this,
+         speed = this.options.speed;
+  
+    // Random the time a little
+    if(this.options.sync !== true) {
+      speed -= this.options.speed * Math.random();
+    }
+    TweenLite.to(this.position, speed, {
+      x : (this.origin.x - (this.options.distance/2) + Math.random() * this.options.distance),
+      y : (this.origin.y - (this.options.distance/2) + Math.random() * this.options.distance),
+      ease: Expo.easeInOut,
+      onComplete: function() {
+        _this.shift();
+      }
+    });
+  };
+  
+  /**
+   * Circle Constructor
+   * @param    point   {Object}    Point object
+   * @param    ctx     {Object}    Context to draw on
+   * @param    options {Object}    options passed from main function
+   */
   function Circle(point, ctx, options) {
     this.options = options || {};
     this.point = point || null;
@@ -187,7 +297,11 @@
     this.opacity = 0;
     this.ctx = ctx;
   }
-
+  
+  
+  /**
+   * Draws Circle to context
+   */
   Circle.prototype.draw = function() {
     if(this.opacity > 0) {
       this.ctx.beginPath();
@@ -197,8 +311,15 @@
     }
   };
   
+  // Get the balls rolling
   new Animate(document.getElementById('canvas'));
- 
+  
+  
+  /**
+   * Utility Function to set default options
+   * @param    object    {object}
+   * @param    src  {object}
+   */
   function defaults(object, src) {
     for(var i in src) {
       if(typeof object[i] === 'undefined') {
