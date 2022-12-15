@@ -33,7 +33,7 @@ rubberEls.forEach((el)=>{
         if (!el.classList.contains('enter')) {
             el.parentElement.classList.remove('PopInLetters');
             el.style.animationDelay = '0ms';
-            el.classList.add('enter');   
+            el.classList.add('enter');
         }
     })
     el.addEventListener('mouseleave',(e)=>{
