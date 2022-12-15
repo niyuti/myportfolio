@@ -900,6 +900,7 @@ form button .hover-bg{
   .contents .items{
     /* display: grid;
     grid-template-columns: auto auto auto ; */
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -1203,10 +1204,7 @@ form button .hover-bg{
     background-color: orange;
 }
 
-  @media screen and (max-width:1000px){
-    .flex{
-        flex-direction: column;
-    }
+
     .skillsx{
         width: 100%;
     }
@@ -1339,6 +1337,9 @@ form button .hover-bg{
   }
   
   @media screen and (max-width:1000px){
+    .flex{
+        flex-direction: column;
+    }
     .modal{
         width: 70vw;
     }
@@ -1351,7 +1352,16 @@ form button .hover-bg{
     .modal .modal-body .description{
         height: 30%;
     }
-    
+    .contents .items .item{
+        width: 50%;
+    }
+    .item-card .card-data{
+        font-size: calc(10px + 12px/var(--i));
+    }
+    .item-card:hover .card-CTA{
+        width: 10em;
+        height: 2em;
+    }
   }
 
   @media screen and (max-width:700px){
@@ -1402,6 +1412,9 @@ form button .hover-bg{
     }
     .skillx{
         width: 85vw;
+    }
+    .item-card .card-data{
+        font-size: calc(8px + 12px/var(--i));
     }
   }
   @media screen and ( max-width:600px) {
@@ -1457,6 +1470,16 @@ form button .hover-bg{
     .hex-card h1{
         font-size: 20px;
     }
+    .bio img{
+        border-radius: 40%;
+    }
+    .item-card .card-data{
+        font-size: calc(12px + 12px/var(--i));
+    }
+    .item-card:hover .card-CTA{
+        width: 10em;
+        height: 2.25em;
+    }
   }
   @media screen and (max-width:450px){
       .center{
@@ -1487,17 +1510,8 @@ form button .hover-bg{
     .item-card .card-image {
         width: 100%;
     }
-    .item-card:hover .card-CTA{
-        color: black;
-        border-color: #aa2121;
-        width: 10em;
-        height: 2.25em;
-    }
     .form{
         width: 90vw;
-    }
-    .item-card:hover .card-data{
-        top:calc(var(--i)*20%);
     }
     
   }
@@ -1545,15 +1559,8 @@ form button .hover-bg{
     .item-card .card-image {
         width: 100%;
     }
-    .item-card:hover .card-CTA{
-        color: black;
-        border-color: #aa2121;
-        width: 10em;
-        height: 2.25em;
-    }
     .item-card:hover .card-data{
         font-size: calc(8px + 10px/var(--i));
-        top:calc(var(--i)*25%);
     }
     .item-card:hover .card-CTA{
         width: 8em;
